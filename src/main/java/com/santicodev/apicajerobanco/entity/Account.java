@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -38,4 +39,12 @@ public class Account {
     )
     private int balance;
 
+    @OneToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "account_id",
+            referencedColumnName = "accountId"
+    )
+    private List<Card> cardList;
 }
