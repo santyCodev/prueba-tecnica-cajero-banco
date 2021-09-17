@@ -6,46 +6,45 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "tbl_card")
-public class Card {
+@Table(name = "tbl_transaction")
+public class Transactions {
+
     @Id
     @SequenceGenerator(
-            name = "card_sequence",
-            sequenceName = "card_sequence",
+            name = "transaction_sequence",
+            sequenceName = "transaction_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "card_sequence"
+            generator = "transaction_sequence"
     )
-    private Long cardId;
+    private Long transactionId;
 
     @Column(
-            name = "card_type",
+            name = "type",
             nullable = false
     )
-    private int cardType;
+    private int type;
 
     @Column(
-            name = "is_activated",
+            name = "quantity",
             nullable = false
     )
-    private boolean isActivated;
+    private int quantity;
 
     @Column(
-            name = "pin",
+            name = "date",
             nullable = false
     )
-    private int pin;
-
-    @Column(name = "credit")
-    private Long credit;
+    private Date date;
 
     @ManyToOne(
             cascade = CascadeType.ALL,
