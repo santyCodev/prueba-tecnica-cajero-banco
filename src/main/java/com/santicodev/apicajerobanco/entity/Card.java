@@ -1,5 +1,6 @@
 package com.santicodev.apicajerobanco.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -68,5 +69,6 @@ public class Card {
             referencedColumnName = "accountId"
 
     )
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Account account;
 }

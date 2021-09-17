@@ -40,23 +40,21 @@ public class CardService {
         return cardRepository.findCardByCardId((long) id);
     }
 
-    public Card changePin(int newPin, Long id) {
-        Card card = cardRepository.findCardByCardId(id);
-        if(!card.isActive()) {
-            card.setPin(newPin);
+    public Card changePin(Card card) {
+        Card cardBbdd = cardRepository.findCardByCardId(card.getCardId());
+        if(card.getPin() != cardBbdd.getPin()) {
             updateCard(card);
         }
         return cardRepository.findCardByCardId(card.getCardId());
     }
 
-    public boolean activateCard(Card card) {
-        boolean active = false;
-        if(!card.isActive()) {
-            card.setActive(true);
-            updateCard(card);
-            active = true;
+    public Card activateCard(Long id) {
+        Card cardBbdd = cardRepository.findCardByCardId(id);
+        if(!cardBbdd.isActive()) {
+            cardBbdd.setActive(true);
+            updateCard(cardBbdd);
         }
-        return active;
+        return cardRepository.findCardByCardId(cardBbdd.getCardId());
     }
 
     public Card updateCard(Card card){

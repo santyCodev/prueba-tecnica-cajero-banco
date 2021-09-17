@@ -22,13 +22,13 @@ class CardRepositoryTest {
         Client client1 = Client
                 .builder()
                 .firstName("Pepe")
-                .lastName("Garcia")
-                .cardId("46679532L")
+                .lastName("Loco")
+                .cardId("466795532L")
                 .build();
 
         Account account1 = Account
                 .builder()
-                .iban("ES0012345556789000")
+                .iban("ES00123455556789000")
                 .balance(5000)
                 .client(client1)
                 .build();

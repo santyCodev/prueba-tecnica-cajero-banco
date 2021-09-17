@@ -23,9 +23,15 @@ public class CardController {
         return new ResponseEntity<>(card, HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<Card> updatePinCard(@RequestBody Card card){
+        Card cardUpdated = cardService.changePin(card);
+        return new ResponseEntity<>(cardUpdated, HttpStatus.OK);
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Card> updatePinCard(@RequestBody int newPin, @PathVariable("id") Long id){
-        Card cardUpdated = cardService.changePin(newPin, id);
+    public ResponseEntity<Card> activateCard(@PathVariable("id") Long id){
+        Card cardUpdated = cardService.activateCard(id);
         return new ResponseEntity<>(cardUpdated, HttpStatus.OK);
     }
 }
