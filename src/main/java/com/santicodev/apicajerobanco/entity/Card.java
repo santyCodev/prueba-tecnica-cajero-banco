@@ -67,7 +67,6 @@ public class Card {
     @JoinColumn(
             name = "account_id",
             referencedColumnName = "accountId"
-
     )
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Account account;

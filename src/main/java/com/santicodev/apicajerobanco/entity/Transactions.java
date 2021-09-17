@@ -1,5 +1,6 @@
 package com.santicodev.apicajerobanco.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,19 +42,18 @@ public class Transactions {
     private int quantity;
 
     @Column(
-            name = "date",
-            nullable = false
+            name = "date"
     )
     private Date date;
 
     @ManyToOne(
             cascade = CascadeType.ALL,
-            optional = false
+            fetch = FetchType.LAZY
     )
     @JoinColumn(
             name = "account_id",
             referencedColumnName = "accountId"
-
     )
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Account account;
 }

@@ -1,4 +1,4 @@
-package com.santicodev.apicajerobanco;
+package com.santicodev.apicajerobanco.controller;
 
 import com.santicodev.apicajerobanco.entity.Card;
 import com.santicodev.apicajerobanco.service.CardService;
@@ -16,7 +16,6 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    //Get card by id
     @GetMapping("/{id}")
     public ResponseEntity<Card> getCardById(@PathVariable("id") Long id) {
         Card card = cardService.findCard(id);

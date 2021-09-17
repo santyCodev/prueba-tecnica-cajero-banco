@@ -21,17 +21,17 @@ public class TransactionService {
         this.transactionRepository = transactionRepository;
     }
 
-    public Transactions addTransaction(Account account, int quantity, int type) {
+    public Transactions addTransaction(Card card, int type, int quantity) {
 
-        Transactions transaction = Transactions
+        Transactions newTransaction = Transactions
                 .builder()
                 .type(checkTransactionType(type))
                 .quantity(quantity)
                 .date(new Date())
-                .account(account)
+                .account(card.getAccount())
                 .build();
 
-        return transactionRepository.save(transaction);
+        return transactionRepository.save(newTransaction);
     }
 
     private int checkTransactionType(int type) {
