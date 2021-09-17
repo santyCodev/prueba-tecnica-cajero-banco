@@ -7,6 +7,8 @@ import com.santicodev.apicajerobanco.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CardService {
 
@@ -31,6 +33,33 @@ public class CardService {
 
         card.setAccount(account);
 
+        return cardRepository.save(card);
+    }
+
+    public Card findCard(Long id) {
+        return cardRepository.findCardByCardId((long) id);
+    }
+
+    public Card changePin(int newPin, Long id) {
+        Card card = cardRepository.findCardByCardId(id);
+        if(!card.isActive()) {
+            card.setPin(newPin);
+            updateCard(card);
+        }
+        return cardRepository.findCardByCardId(card.getCardId());
+    }
+
+    public boolean activateCard(Card card) {
+        boolean active = false;
+        if(!card.isActive()) {
+            card.setActive(true);
+            updateCard(card);
+            active = true;
+        }
+        return active;
+    }
+
+    public Card updateCard(Card card){
         return cardRepository.save(card);
     }
 

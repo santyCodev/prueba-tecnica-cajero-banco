@@ -21,19 +21,34 @@ class CardRepositoryTest {
     public void saveCard() {
         Client client1 = Client
                 .builder()
-                .firstName("Santiago")
+                .firstName("Pepe")
                 .lastName("Garcia")
-                .cardId("46669532L")
+                .cardId("46679532L")
                 .build();
 
         Account account1 = Account
                 .builder()
-                .iban("ES00123456789000")
+                .iban("ES0012345556789000")
                 .balance(5000)
                 .client(client1)
                 .build();
 
         cardService.addCard(account1, Constants.CREDIT_CARD);
     }
+
+    /*@Test
+    public void getCard() {
+        Card card = cardService.findCard(2);
+
+        System.out.println("Card = "+ card);
+    }
+
+    @Test
+    public void activateCard() {
+        Card card = cardService.findCard(1);
+        if(card != null){
+            cardService.activateCard(card);
+        }
+    }*/
 
 }

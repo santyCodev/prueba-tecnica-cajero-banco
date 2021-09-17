@@ -1,9 +1,6 @@
 package com.santicodev.apicajerobanco.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -13,6 +10,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "account")
 @Table(
         name = "tbl_card",
         uniqueConstraints = @UniqueConstraint(
@@ -62,7 +60,8 @@ public class Card {
 
     @ManyToOne(
             cascade = CascadeType.ALL,
-            optional = false
+            optional = false,
+            fetch = FetchType.LAZY
     )
     @JoinColumn(
             name = "account_id",
