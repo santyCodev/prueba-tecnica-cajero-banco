@@ -29,7 +29,7 @@ public class Card {
             name = "card_type",
             nullable = false
     )
-    private String cardType;
+    private int cardType;
 
     @Column(
             name = "is_activated",
