@@ -45,4 +45,15 @@ public class Card {
 
     @Column(name = "credit")
     private Long credit;
+
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            optional = false
+    )
+    @JoinColumn(
+            name = "account_id",
+            referencedColumnName = "accountId"
+
+    )
+    private Account account;
 }

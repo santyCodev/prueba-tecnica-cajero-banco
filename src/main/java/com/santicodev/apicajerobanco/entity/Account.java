@@ -31,20 +31,11 @@ public class Account {
             name = "iban",
             nullable = false
     )
-    private int iban;
+    private String iban;
 
     @Column(
             name = "balance",
             nullable = false
     )
     private int balance;
-
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "account_id",
-            referencedColumnName = "accountId"
-    )
-    private List<Card> cardList;
 }
