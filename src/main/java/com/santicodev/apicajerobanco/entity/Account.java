@@ -39,4 +39,15 @@ public class Account {
             nullable = false
     )
     private int balance;
+
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            optional = false
+    )
+    @JoinColumn(
+            name = "client_id",
+            referencedColumnName = "clientId"
+
+    )
+    private Client client;
 }
