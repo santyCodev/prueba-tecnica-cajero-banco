@@ -13,7 +13,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "tbl_account")
+@Table(
+        name = "tbl_account",
+        uniqueConstraints = @UniqueConstraint(
+                name = "iban_unique",
+                columnNames = "iban"
+        )
+)
 public class Account {
 
     @Id

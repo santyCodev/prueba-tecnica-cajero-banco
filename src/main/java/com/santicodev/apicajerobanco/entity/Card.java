@@ -6,13 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "tbl_card")
+@Table(
+        name = "tbl_card",
+        uniqueConstraints = @UniqueConstraint(
+                name = "num_card_unique",
+                columnNames = "num_card"
+        )
+)
 public class Card {
     @Id
     @SequenceGenerator(
@@ -27,16 +34,22 @@ public class Card {
     private Long cardId;
 
     @Column(
+            name = "num_card",
+            nullable = false
+    )
+    private String numCard;
+
+    @Column(
             name = "card_type",
             nullable = false
     )
     private int cardType;
 
     @Column(
-            name = "is_activated",
+            name = "is_active",
             nullable = false
     )
-    private boolean isActivated;
+    private boolean isActive;
 
     @Column(
             name = "pin",
@@ -45,7 +58,7 @@ public class Card {
     private int pin;
 
     @Column(name = "credit")
-    private Long credit;
+    private Integer credit;
 
     @ManyToOne(
             cascade = CascadeType.ALL,

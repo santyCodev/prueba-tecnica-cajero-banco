@@ -12,7 +12,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "tbl_client")
+@Table(
+        name = "tbl_client",
+        uniqueConstraints = @UniqueConstraint(
+                name = "card_id_unique",
+                columnNames = "card_id"
+        )
+)
 public class Client {
 
     @Id
@@ -27,9 +33,21 @@ public class Client {
     )
     private Long clientId;
 
+    @Column(
+            name = "first_name",
+            nullable = false
+    )
     private String firstName;
 
+    @Column(
+            name = "last_name",
+            nullable = false
+    )
     private String lastName;
 
+    @Column(
+            name = "card_id",
+            nullable = false
+    )
     private String cardId;
 }
